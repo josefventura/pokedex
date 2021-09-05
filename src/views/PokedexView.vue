@@ -1,13 +1,14 @@
 <template>
   <div class="card-expansion">
-    <md-card>
+    <md-card v-for="poke in pokemones" :key="poke">
+        {{getDataPokemon(poke.url)}}
       <md-card-media>
-        <img src="" alt="">
+        <img src= "" >
       </md-card-media>
 
       <md-card-header>
-        <div class="md-title">nombre_pokemon</div>
-        <div class="md-subhead">type</div>
+        <div class="md-title">{{ poke.name }}</div>
+        <div class="md-subhead">{{ pokemon.type}}</div>
       </md-card-header>
 
       <md-card-expand>
@@ -28,8 +29,36 @@
 </template>
 
 <script>
+
+import { getPokemon, getDataPokemon } from '@/api/index'
+
   export default {
-    name: 'CardExpansion'
+    name: 'PokedexView',
+     data(){
+        return{
+            pokemones: [],
+            pokemon: {},
+        }
+    }, 
+    methods: {
+        getDataPokemon(url){
+            getDataPokemon(url).then(
+                (data)=>{
+                    this.pokemon ={
+                        'src': data.sprites.front_default,
+
+                    }
+                }
+            )
+        }
+    },
+       mounted() {
+       getPokemon().then(
+                (data)=>{
+                    this.pokemones = data.results
+                }
+            )
+   },
   }
 </script>
 

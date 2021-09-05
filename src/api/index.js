@@ -12,3 +12,13 @@ export function getPokemon(){
     }).then(resp => resp.json())
 
 }
+export function getDataPokemon(apiPokemon){
+    return fetch(`${apiPokemon}`,{
+         method:'GET',
+         mode:'cors',
+         headers: {
+             "Content-Type": "application/json",
+         }
+     }).then(resp => resp.json())
+ 
+ }

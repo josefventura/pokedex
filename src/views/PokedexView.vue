@@ -1,6 +1,6 @@
 <template>
   <div class="card-expansion">
-    <md-card v-for="poke in pokemones" :key="poke">
+    <md-card v-for="poke in pokemones.slice(0, 5)" :key="poke">
         {{getDataPokemon(poke.url)}}
       <md-card-media>
         <img src= "" >
